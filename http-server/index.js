@@ -1,34 +1,10 @@
-// const http = require("http");
-// const fs = require("fs");
-
-// // Read the "home.html" file
-// fs.readFile("home.html", (err, homeContent) => {
-//   if (err) {
-//     throw err;
-//   }
-
-//   // Log the content to the console
-//   console.log(homeContent.toString());
-
-//   // Create an HTTP server
-//   http.createServer((request, response) => {
-//     // Set the response headers
-//     response.writeHead(200, { "Content-Type": "text/html" });
-
-//     // Write the content of "home.html" to the response
-//     response.write(homeContent);
-
-//     // End the response
-//     response.end();
-//   }).listen(3000, () => {
-//     console.log("Server is listening on port 3000");
-//   });
-// });
 const http = require("http");
 const fs = require("fs");
+const argv = require("minimist")(process.argv.slice(2)); // Parse command line arguments
 
 let homeContent = "";
 let projectContent = "";
+let registrationContent = "";
 
 fs.readFile("home.html", (err, home) => {
   if (err) {
@@ -43,20 +19,33 @@ fs.readFile("project.html", (err, project) => {
   }
   projectContent = project;
 });
-http
-  .createServer((request, response) => {
-    let url = request.url;
-    response.writeHeader(200, { "Content-Type": "text/html" });
-    switch (url) {
-      case "/project":
-        response.write(projectContent);
-        response.end();
-        break;
-      default:
-        response.write(homeContent);
-        response.end();
-        break;
-    }
-  })
-  .listen(3000);
 
+fs.readFile("registration.html", (err, registration) => {
+  if (err) {
+    throw err;
+  }
+  registrationContent = registration;
+});
+
+const port = argv.port || 3000; // Use the supplied port or default to 3000
+
+http.createServer((request, response) => {
+  let url = request.url;
+  response.writeHead(200, { "Content-Type": "text/html" });
+  switch (url) {
+    case "/project":
+      response.write(projectContent);
+      response.end();
+      break;
+    case "/registration":
+      response.write(registrationContent);
+      response.end();
+      break;
+    default:
+      response.write(homeContent);
+      response.end();
+      break;
+  }
+}).listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});
