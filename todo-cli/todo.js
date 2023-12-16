@@ -15,18 +15,17 @@ const todoList = () => {
     
       const dueToday = () => {
         const today = new Date().toISOString().split("T")[0];
-    
+      
         return all.filter(
-          (item) => !item.completed && item.dueDate === today
+          (item) =>
+            item.dueDate === today
         );
       };
-    
+      
       const dueLater = () => {
         const today = new Date().toISOString().split("T")[0];
     
-        return all.filter(
-          (item) => !item.completed && item.dueDate > today
-        );
+        return all.filter((item) => !item.completed && item.dueDate >= tomorrow);
       };
     
       const toDisplayableList = (list) => {
@@ -34,13 +33,14 @@ const todoList = () => {
           .map((item) => {
             const checkbox = item.completed ? "[x]" : "[ ]";
             const date =
-              item.dueDate === new Date().toISOString().split("T")[0]
+              item.dueDate === today
                 ? ""
                 : ` ${item.dueDate}`;
             return `${checkbox} ${item.title}${date}`;
           })
           .join("\n");
       };
+    
     return {
       all,
       add,
