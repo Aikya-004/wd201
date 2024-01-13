@@ -8,11 +8,15 @@ app.use(bodyParser.json())
 app.set('view engine', 'ejs')
 app.get('/', async function (request, response) {
   const allTodos = await Todo.getTodos()
+  const duetoday = await Todo.dueToday()
+  const overdue = await Todo.overDue()
+  const duelater = await Todo.dueLater()
+  // const completeditem = await Todo.completedItems()
 
   if (request.accepts('html')) {
-    response.render('index', { allTodos })
+    response.render('index', { allTodos, duetoday, overdue, duelater })
   } else {
-    response.json({ allTodos })
+    response.json({ allTodos, duetoday, overdue, duelater })
   }
 })
 app.use(express.static(path.join(__dirname, 'public')))
