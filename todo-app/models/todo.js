@@ -18,43 +18,41 @@ module.exports = (sequelize, DataTypes) => {
     markAsCompleted() {
       return this.update({ completed: true });
     }
-    static getTodos(){
-      return this.findAll()
+    static getTodos() {
+      return this.findAll();
     }
-    static deleteTodo(id){
-      return this.destroy({where:{id}});
+    static deleteTodo(id) {
+      return this.destroy({ where: { id } });
     }
-    static async overDue(){
-      return this.findAll({
-      where: {
-        dueDate: {
-          [Op.lt] : new Date().toISOString().split("T")[0],
-        },
-      },
-      order: [["id", "ASC"]],
-    });
-  }
-    static async dueToday(){
+    static async overDue() {
       return this.findAll({
         where: {
           dueDate: {
-            [Op.eq] : new Date().toISOString().split("T")[0],
+            [Op.lt]: new Date().toISOString().split("T")[0],
           },
         },
         order: [["id", "ASC"]],
       });
-
     }
-    static async dueLater(){
+    static async dueToday() {
       return this.findAll({
         where: {
           dueDate: {
-            [Op.gt] : new Date().toISOString().split("T")[0],
+            [Op.eq]: new Date().toISOString().split("T")[0],
           },
         },
         order: [["id", "ASC"]],
       });
-
+    }
+    static async dueLater() {
+      return this.findAll({
+        where: {
+          dueDate: {
+            [Op.gt]: new Date().toISOString().split("T")[0],
+          },
+        },
+        order: [["id", "ASC"]],
+      });
     }
     static completedItems() {
       return this.findAll({
