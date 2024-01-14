@@ -1,6 +1,6 @@
-
 <div class="mx-auto">
-    <h5 >Overdue <span id="count-overdue" class="bg-gray-300 text-sm font-small mr-2 px-2.5 py-0.5 rounded dark:bg-gray-100 justify-center items-center items"><%= overdue.length %></span></h5>
+    <h5 >Overdue </h5>
+    <span id="count-overdue" class="bg-gray-300 text-sm font-small mr-2 px-2.5 py-0.5 rounded dark:bg-gray-100 justify-center items-center items"><%= overdue.length %></span>
     <div class="my-4 w-full">
         <% overdue.forEach(todo => { %>
             <div class="Todo-item flex items-center w-fit my-2 px-2 py-1 rounded hover:bg-purple-50 ml-5">
@@ -18,7 +18,8 @@
 
 
 <div class="mx-auto">
-    <h5 >Due Today <span id="count-due-today" class="bg-gray-300 text-sm font-small mr-2 px-2.5 py-0.5 rounded dark:bg-gray-100 justify-center items-center items"><%= duetoday.length %></span></h5>
+    <h5 >Due Today </h5>
+    <span id="count-due-today" class="bg-gray-300 text-sm font-small mr-2 px-2.5 py-0.5 rounded dark:bg-gray-100 justify-center items-center items"><%= duetoday.length %></span>
     <div class="my-4 w-full">
         <% duetoday.forEach(todo => { %>
             <div class="Todo-item flex items-center w-fit my-2 px-2 py-1 rounded hover:bg-purple-50 ml-5">
@@ -34,7 +35,8 @@
     </div>
 </div>
 <div class="mx-auto">
-    <h5 >Due Later <span id="count-due-later" class="bg-gray-300 text-sm font-small mr-2 px-2.5 py-0.5 rounded dark:bg-gray-100 justify-center items-center items"><%= duelater.length %></span></h5>
+    <h5 >Due Later</h5>
+    <span id="count-due-later" class="bg-gray-300 text-sm font-small mr-2 px-2.5 py-0.5 rounded dark:bg-gray-100 justify-center items-center items"><%= duelater.length %></span>
     <div class="my-4 w-full">
         <% duelater.forEach(todo => { %>
             <div class="Todo-item flex items-center w-fit my-2 px-2 py-1 rounded hover:bg-purple-50 ml-5">
