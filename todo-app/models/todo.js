@@ -14,10 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     static addTodo({ title, dueDate }) {
       return this.create({ title: title, dueDate: dueDate, completed: false });
     }
-
-    markAsCompleted() {
-      return this.update({ completed: true });
-    }
     static getTodos() {
       return this.findAll();
     }
@@ -61,6 +57,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         order: [["id", "ASC"]],
       });
+    }
+    setCompletionStatus(value) {
+      return this.update({ completed: value });
     }
   }
   Todo.init(

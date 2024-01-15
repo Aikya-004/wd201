@@ -9,10 +9,12 @@
     <script>
          var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content")
         function updateTodo(id) {
-            fetch(`/todos/${id}/markAsCompleted`,{
+            const bool = document.querySelector(`#todo-checkbox-${id}`).checked;
+            fetch(`/todos/${id}`,{
                 method: "put",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
+                    completed: bool,
                     "_csrf": token
                 })
             })
@@ -129,7 +131,7 @@
             </ul>
         </div> -->
       
-        <%- include('todos.ejs', { overdue, duetoday, duelater}) %>
+        <%- include('todos.ejs', { overdue, duetoday, duelater,completeditem}) %>
         <!-- <%- include("footer.ejs") %> -->
         
         </div>
