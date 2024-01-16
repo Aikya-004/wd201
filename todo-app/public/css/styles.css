@@ -3,6 +3,6 @@ body {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-.Todo-item:hover .trash-icon {
+.Todo-Item:hover .trash-icon {
   display: block;
 }
