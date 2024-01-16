@@ -61,22 +61,6 @@ app.get('/todos/:id', async function (request, response) {
 app.post('/todos', async function (request, response) {
   console.log('Creating a todo', request.body)
   try {
-    // // Validation: Check for empty title
-    // if (request.body.title.trim() === '') {
-    //   request.flash('error', 'Title can not be empty!')
-    //   return response.redirect('/todos')
-    // }
-
-    // // Validation: Check for empty dueDate
-    // if (request.body.dueDate.trim() === '') {
-    //   request.flash('error', 'Due date can not be empty!')
-    //   return response.redirect('/todos')
-    // }
-    if (!request.body.title || !request.body.dueDate) {
-      return response.status(400).json({ error: 'Title and dueDate are required' })
-    }
-
-    // If validation passes, add the todo
     await Todo.addTodo({
       title: request.body.title,
       dueDate: request.body.dueDate

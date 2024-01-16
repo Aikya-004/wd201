@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        if (!dueDate.trim() && !title.trim()) {
-        alert('Due Date cannot be empty');
-        return;
-    }
-         var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+    //     if (!dueDate.trim() && !title.trim()) {
+    //     alert('Due Date cannot be empty');
+    //     return;
+    // }
+        var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content")
         function updateTodo(id) {
             const bool = document.querySelector(`#todo-checkbox-${id}`).checked;
             fetch(`/todos/${id}`,{
