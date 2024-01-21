@@ -69,12 +69,12 @@ passport.deserializeUser((id, done) => {
     })
 })
 
-app.get('/', async function (request, response) {
-  response.render('index', {
-    title: 'Todo application',
-    csrfToken: request.csrfToken()
-  })
-})
+// app.get('/', async function (request, response) {
+//   response.render('index', {
+//     title: 'Todo application',
+//     csrfToken: request.csrfToken()
+//   })
+// })
 // app.get('/', connectEnsureLogin.ensureLoggedIn, (request, response) => {
 //   response.redirect('/todos')
 // })
