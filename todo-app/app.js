@@ -75,9 +75,9 @@ app.get('/', async function (request, response) {
     csrfToken: request.csrfToken()
   })
 })
-app.get('/', connectEnsureLogin.ensureLoggedIn, (request, response) => {
-  response.redirect('/todos')
-})
+// app.get('/', connectEnsureLogin.ensureLoggedIn, (request, response) => {
+//   response.redirect('/todos')
+// })
 app.get('/todos', connectEnsureLogin.ensureLoggedIn(), async function (request, response) {
   const loggedInUser = request.user.id
   const allTodos = await Todo.getTodos(loggedInUser)
