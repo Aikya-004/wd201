@@ -169,6 +169,19 @@ app.get('/signout', (request, response, next) => {
     response.redirect('/')
   })
 })
+app.get('/', async (request, response) => {
+  if (request.isAuthenticated()) {
+    return response.redirect('/todos')
+  } else {
+    if (request.accepts('html')) {
+      response.render('index', {
+        csrfToken: request.csrfToken()
+      })
+    } else {
+      response.json({ message: 'Not Authenticated' })
+    }
+  }
+})
 
 app.post('/todos', connectEnsureLogin.ensureLoggedIn(), async function (request, response) {
   console.log('Creating a todo', request.body)
