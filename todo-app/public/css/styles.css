@@ -1,7 +1,8 @@
 body {
-  background-color: white;
+  /* background-color: white; */
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: black;
 }
 .Todo-Item:hover .trash-icon {
   display: block;
