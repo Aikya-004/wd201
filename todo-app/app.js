@@ -54,7 +54,6 @@ passport.use(new LocalStrategy({
       return (error)
     })
 }))
-
 passport.serializeUser((user, done) => {
   console.log('Serializing user in session', user.id)
   done(null, user.id)
@@ -75,6 +74,9 @@ app.get('/', async function (request, response) {
     title: 'Todo application',
     csrfToken: request.csrfToken()
   })
+})
+app.get('/', connectEnsureLogin.ensureLoggedIn, (request, response) => {
+  response.redirect('/todos')
 })
 app.get('/todos', connectEnsureLogin.ensureLoggedIn(), async function (request, response) {
   const loggedInUser = request.user.id
