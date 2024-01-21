@@ -134,15 +134,6 @@ app.get('/todos/:id', async function (request, response) {
 app.post('/users', async (request, response) => {
   const hashedPwd = await bcrypt.hash(request.body.password, saltRounds)
   console.log(hashedPwd)
-  const { firstName, email, password } = request.body
-
-  if (!password || !firstName || !email) {
-    // Flash an error message
-    request.flash(
-      'error',
-      'Password and firstname and Email are must required!'
-    )
-  }
   try {
     const user = await User.create({
       firstName: request.body.firstName,
